@@ -1,0 +1,100 @@
+[2024-09-26T16:30:47.144+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-09-26T16:30:47.159+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Amazon_Book_Data.Create_Table_PGdb scheduled__2024-09-24T00:00:00+00:00 [queued]>
+[2024-09-26T16:30:47.166+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Amazon_Book_Data.Create_Table_PGdb scheduled__2024-09-24T00:00:00+00:00 [queued]>
+[2024-09-26T16:30:47.167+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2024-09-26T16:30:47.180+0000] {taskinstance.py:2888} INFO - Executing <Task(PostgresOperator): Create_Table_PGdb> on 2024-09-24 00:00:00+00:00
+[2024-09-26T16:30:47.188+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1542) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-09-26T16:30:47.190+0000] {standard_task_runner.py:72} INFO - Started process 1547 to run task
+[2024-09-26T16:30:47.190+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Amazon_Book_Data', 'Create_Table_PGdb', 'scheduled__2024-09-24T00:00:00+00:00', '--job-id', '46', '--raw', '--subdir', 'DAGS_FOLDER/amazon_books.py', '--cfg-path', '/tmp/tmp71knpw2k']
+[2024-09-26T16:30:47.191+0000] {standard_task_runner.py:105} INFO - Job 46: Subtask Create_Table_PGdb
+[2024-09-26T16:30:47.233+0000] {task_command.py:467} INFO - Running <TaskInstance: Amazon_Book_Data.Create_Table_PGdb scheduled__2024-09-24T00:00:00+00:00 [running]> on host f04706ee9217
+[2024-09-26T16:30:47.300+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Amazon_Book_Data' AIRFLOW_CTX_TASK_ID='Create_Table_PGdb' AIRFLOW_CTX_EXECUTION_DATE='2024-09-24T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-09-24T00:00:00+00:00'
+[2024-09-26T16:30:47.301+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-09-26T16:30:47.301+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-09-26T16:30:47.302+0000] {logging_mixin.py:190} INFO - Current task name:Create_Table_PGdb state:running start_date:2024-09-26 16:30:47.159910+00:00
+[2024-09-26T16:30:47.302+0000] {logging_mixin.py:190} INFO - Dag name:Amazon_Book_Data and current dag run status:running
+[2024-09-26T16:30:47.303+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-09-26T16:30:47.303+0000] {sql.py:266} INFO - Executing: 
+    CREATE TABLE IF NOT EXISTS amazon_books (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        authors TEXT,
+        price TEXT,
+        rating TEXT
+    );
+    
+[2024-09-26T16:30:47.311+0000] {base.py:84} INFO - Retrieving connection 'Amazon_Books'
+[2024-09-26T16:30:47.318+0000] {base.py:84} INFO - Retrieving connection 'Amazon_Books'
+[2024-09-26T16:30:47.321+0000] {sql.py:509} INFO - Running statement: 
+    CREATE TABLE IF NOT EXISTS amazon_books (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        authors TEXT,
+        price TEXT,
+        rating TEXT
+    );
+    , parameters: None
+[2024-09-26T16:30:47.330+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-09-26T16:30:47.331+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=Amazon_Book_Data, task_id=Create_Table_PGdb, run_id=scheduled__2024-09-24T00:00:00+00:00, execution_date=20240924T000000, start_date=20240926T163047, end_date=20240926T163047
+[2024-09-26T16:30:47.339+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-09-26T16:30:47.340+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-09-26T16:30:47.340+0000] {logging_mixin.py:190} INFO - Dag name:Amazon_Book_Data queued_at:2024-09-26 16:30:40.605806+00:00
+[2024-09-26T16:30:47.341+0000] {logging_mixin.py:190} INFO - Task hostname:f04706ee9217 operator:PostgresOperator
+[2024-09-26T16:30:47.364+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-09-26T16:30:47.373+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1378: AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+  result = cls.__new__(cls)
+
+[2024-09-26T16:30:47.384+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-09-26T16:30:47.386+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-09-26T16:31:47.385+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-09-26T16:31:47.399+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Amazon_Book_Data.Create_Table_PGdb scheduled__2024-09-24T00:00:00+00:00 [queued]>
+[2024-09-26T16:31:47.404+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Amazon_Book_Data.Create_Table_PGdb scheduled__2024-09-24T00:00:00+00:00 [queued]>
+[2024-09-26T16:31:47.405+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2024-09-26T16:31:47.414+0000] {taskinstance.py:2888} INFO - Executing <Task(PostgresOperator): Create_Table_PGdb> on 2024-09-24 00:00:00+00:00
+[2024-09-26T16:31:47.420+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1580) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-09-26T16:31:47.422+0000] {standard_task_runner.py:72} INFO - Started process 1584 to run task
+[2024-09-26T16:31:47.422+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Amazon_Book_Data', 'Create_Table_PGdb', 'scheduled__2024-09-24T00:00:00+00:00', '--job-id', '52', '--raw', '--subdir', 'DAGS_FOLDER/amazon_books.py', '--cfg-path', '/tmp/tmpu9jk069r']
+[2024-09-26T16:31:47.423+0000] {standard_task_runner.py:105} INFO - Job 52: Subtask Create_Table_PGdb
+[2024-09-26T16:31:47.460+0000] {task_command.py:467} INFO - Running <TaskInstance: Amazon_Book_Data.Create_Table_PGdb scheduled__2024-09-24T00:00:00+00:00 [running]> on host f04706ee9217
+[2024-09-26T16:31:47.520+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Amazon_Book_Data' AIRFLOW_CTX_TASK_ID='Create_Table_PGdb' AIRFLOW_CTX_EXECUTION_DATE='2024-09-24T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-09-24T00:00:00+00:00'
+[2024-09-26T16:31:47.522+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-09-26T16:31:47.523+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-09-26T16:31:47.523+0000] {logging_mixin.py:190} INFO - Current task name:Create_Table_PGdb state:running start_date:2024-09-26 16:31:47.399577+00:00
+[2024-09-26T16:31:47.524+0000] {logging_mixin.py:190} INFO - Dag name:Amazon_Book_Data and current dag run status:running
+[2024-09-26T16:31:47.524+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-09-26T16:31:47.525+0000] {sql.py:266} INFO - Executing: 
+    CREATE TABLE IF NOT EXISTS amazon_books (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        authors TEXT,
+        price TEXT,
+        rating TEXT
+    );
+    
+[2024-09-26T16:31:47.531+0000] {base.py:84} INFO - Retrieving connection 'Amazon_Books'
+[2024-09-26T16:31:47.538+0000] {base.py:84} INFO - Retrieving connection 'Amazon_Books'
+[2024-09-26T16:31:47.541+0000] {sql.py:509} INFO - Running statement: 
+    CREATE TABLE IF NOT EXISTS amazon_books (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        authors TEXT,
+        price TEXT,
+        rating TEXT
+    );
+    , parameters: None
+[2024-09-26T16:31:47.548+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-09-26T16:31:47.549+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=Amazon_Book_Data, task_id=Create_Table_PGdb, run_id=scheduled__2024-09-24T00:00:00+00:00, execution_date=20240924T000000, start_date=20240926T163147, end_date=20240926T163147
+[2024-09-26T16:31:47.555+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-09-26T16:31:47.556+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-09-26T16:31:47.556+0000] {logging_mixin.py:190} INFO - Dag name:Amazon_Book_Data queued_at:2024-09-26 16:31:41.176778+00:00
+[2024-09-26T16:31:47.556+0000] {logging_mixin.py:190} INFO - Task hostname:f04706ee9217 operator:PostgresOperator
+[2024-09-26T16:31:47.597+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-09-26T16:31:47.605+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1378: AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+  result = cls.__new__(cls)
+
+[2024-09-26T16:31:47.613+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-09-26T16:31:47.615+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

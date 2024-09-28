@@ -1,0 +1,238 @@
+[2024-09-26T16:19:14.803+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-09-26T16:19:15.636+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Amazon_Book_Data.Fetch_Books_Data scheduled__2024-06-21T00:00:00+00:00 [queued]>
+[2024-09-26T16:19:15.750+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Amazon_Book_Data.Fetch_Books_Data scheduled__2024-06-21T00:00:00+00:00 [queued]>
+[2024-09-26T16:19:15.786+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2024-09-26T16:19:15.939+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): Fetch_Books_Data> on 2024-06-21 00:00:00+00:00
+[2024-09-26T16:19:16.267+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1231) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-09-26T16:19:16.272+0000] {standard_task_runner.py:72} INFO - Started process 1295 to run task
+[2024-09-26T16:19:16.542+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Amazon_Book_Data', 'Fetch_Books_Data', 'scheduled__2024-06-21T00:00:00+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/amazon_books.py', '--cfg-path', '/tmp/tmpq3hhklss']
+[2024-09-26T16:19:16.568+0000] {standard_task_runner.py:105} INFO - Job 19: Subtask Fetch_Books_Data
+[2024-09-26T16:19:21.211+0000] {task_command.py:467} INFO - Running <TaskInstance: Amazon_Book_Data.Fetch_Books_Data scheduled__2024-06-21T00:00:00+00:00 [running]> on host f04706ee9217
+[2024-09-26T16:19:23.942+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Amazon_Book_Data' AIRFLOW_CTX_TASK_ID='Fetch_Books_Data' AIRFLOW_CTX_EXECUTION_DATE='2024-06-21T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-21T00:00:00+00:00'
+[2024-09-26T16:19:24.025+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-09-26T16:19:24.026+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-09-26T16:19:24.027+0000] {logging_mixin.py:190} INFO - Current task name:Fetch_Books_Data state:running start_date:2024-09-26 16:19:15.733673+00:00
+[2024-09-26T16:19:24.027+0000] {logging_mixin.py:190} INFO - Dag name:Amazon_Book_Data and current dag run status:running
+[2024-09-26T16:19:24.027+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-09-26T16:19:27.027+0000] {logging_mixin.py:190} INFO - Able to reach the site, scrapping data...
+[2024-09-26T16:19:27.509+0000] {logging_mixin.py:190} INFO - The webpage has been scrapped for data...
+[2024-09-26T16:19:27.529+0000] {logging_mixin.py:190} INFO - Books data has been scrapped from the website succesfully !!!
+[2024-09-26T16:19:27.532+0000] {logging_mixin.py:190} INFO - Number of books scrapped :  49
+[2024-09-26T16:19:27.533+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/amazon_books.py", line 68, in fetch_books_data
+    ti.xcom_push(key='book_data', value=df.to_dict('records'))
+    ^^
+NameError: name 'ti' is not defined
+[2024-09-26T16:19:27.549+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2024-09-26T16:19:27.550+0000] {logging_mixin.py:190} INFO - Task start:2024-09-26 16:19:15.733673+00:00 end:2024-09-26 16:19:27.549015+00:00 duration:11.815342
+[2024-09-26T16:19:27.550+0000] {logging_mixin.py:190} INFO - Task:<Task(PythonOperator): Fetch_Books_Data> dag:<DAG: Amazon_Book_Data> dagrun:<DagRun Amazon_Book_Data @ 2024-06-21 00:00:00+00:00: scheduled__2024-06-21T00:00:00+00:00, state:running, queued_at: 2024-09-26 16:17:52.460035+00:00. externally triggered: False>
+[2024-09-26T16:19:27.550+0000] {logging_mixin.py:190} INFO - Failure caused by name 'ti' is not defined
+[2024-09-26T16:19:27.551+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Amazon_Book_Data, task_id=Fetch_Books_Data, run_id=scheduled__2024-06-21T00:00:00+00:00, execution_date=20240621T000000, start_date=20240926T161915, end_date=20240926T161927
+[2024-09-26T16:19:27.561+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-09-26T16:19:27.561+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 19 for task Fetch_Books_Data (name 'ti' is not defined; 1295)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/amazon_books.py", line 68, in fetch_books_data
+    ti.xcom_push(key='book_data', value=df.to_dict('records'))
+    ^^
+NameError: name 'ti' is not defined
+[2024-09-26T16:19:27.615+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-09-26T16:19:27.627+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-09-26T16:19:27.628+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-09-26T16:23:07.617+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-09-26T16:23:07.643+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Amazon_Book_Data.Fetch_Books_Data scheduled__2024-06-21T00:00:00+00:00 [queued]>
+[2024-09-26T16:23:07.664+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Amazon_Book_Data.Fetch_Books_Data scheduled__2024-06-21T00:00:00+00:00 [queued]>
+[2024-09-26T16:23:07.666+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2024-09-26T16:23:07.684+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): Fetch_Books_Data> on 2024-06-21 00:00:00+00:00
+[2024-09-26T16:23:07.700+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1356) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-09-26T16:23:07.703+0000] {standard_task_runner.py:72} INFO - Started process 1389 to run task
+[2024-09-26T16:23:07.702+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Amazon_Book_Data', 'Fetch_Books_Data', 'scheduled__2024-06-21T00:00:00+00:00', '--job-id', '24', '--raw', '--subdir', 'DAGS_FOLDER/amazon_books.py', '--cfg-path', '/tmp/tmpy05mu3zb']
+[2024-09-26T16:23:07.704+0000] {standard_task_runner.py:105} INFO - Job 24: Subtask Fetch_Books_Data
+[2024-09-26T16:23:07.814+0000] {task_command.py:467} INFO - Running <TaskInstance: Amazon_Book_Data.Fetch_Books_Data scheduled__2024-06-21T00:00:00+00:00 [running]> on host f04706ee9217
+[2024-09-26T16:23:08.017+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Amazon_Book_Data' AIRFLOW_CTX_TASK_ID='Fetch_Books_Data' AIRFLOW_CTX_EXECUTION_DATE='2024-06-21T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-21T00:00:00+00:00'
+[2024-09-26T16:23:08.021+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-09-26T16:23:08.027+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-09-26T16:23:08.028+0000] {logging_mixin.py:190} INFO - Current task name:Fetch_Books_Data state:running start_date:2024-09-26 16:23:07.644811+00:00
+[2024-09-26T16:23:08.029+0000] {logging_mixin.py:190} INFO - Dag name:Amazon_Book_Data and current dag run status:running
+[2024-09-26T16:23:08.030+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-09-26T16:23:09.223+0000] {logging_mixin.py:190} INFO - Able to reach the site, scrapping data...
+[2024-09-26T16:23:19.780+0000] {job.py:229} INFO - Heartbeat recovered after 12.45 seconds
+[2024-09-26T16:23:20.904+0000] {logging_mixin.py:190} INFO - The webpage has been scrapped for data...
+[2024-09-26T16:23:20.934+0000] {logging_mixin.py:190} INFO - Books data has been scrapped from the website succesfully !!!
+[2024-09-26T16:23:21.166+0000] {logging_mixin.py:190} INFO - Number of books scrapped :  47
+[2024-09-26T16:23:21.167+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/amazon_books.py", line 69, in fetch_books_data
+    ti.xcom_push(key='book_data', value=df.to_dict('records'))
+    ^^
+NameError: name 'ti' is not defined
+[2024-09-26T16:23:21.204+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2024-09-26T16:23:21.205+0000] {logging_mixin.py:190} INFO - Task start:2024-09-26 16:23:07.644811+00:00 end:2024-09-26 16:23:21.204040+00:00 duration:13.559229
+[2024-09-26T16:23:21.206+0000] {logging_mixin.py:190} INFO - Task:<Task(PythonOperator): Fetch_Books_Data> dag:<DAG: Amazon_Book_Data> dagrun:<DagRun Amazon_Book_Data @ 2024-06-21 00:00:00+00:00: scheduled__2024-06-21T00:00:00+00:00, state:running, queued_at: 2024-09-26 16:23:02.839987+00:00. externally triggered: False>
+[2024-09-26T16:23:21.207+0000] {logging_mixin.py:190} INFO - Failure caused by name 'ti' is not defined
+[2024-09-26T16:23:21.208+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Amazon_Book_Data, task_id=Fetch_Books_Data, run_id=scheduled__2024-06-21T00:00:00+00:00, execution_date=20240621T000000, start_date=20240926T162307, end_date=20240926T162321
+[2024-09-26T16:23:21.292+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-09-26T16:23:21.315+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 24 for task Fetch_Books_Data (name 'ti' is not defined; 1389)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/amazon_books.py", line 69, in fetch_books_data
+    ti.xcom_push(key='book_data', value=df.to_dict('records'))
+    ^^
+NameError: name 'ti' is not defined
+[2024-09-26T16:23:21.383+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-09-26T16:23:21.399+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1378: AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+  result = cls.__new__(cls)
+
+[2024-09-26T16:23:21.420+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-09-26T16:23:21.425+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
